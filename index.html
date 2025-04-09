@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elden Ring Stats Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background">
+    <canvas id="stoneCanvas"></canvas>
+    <canvas id="sparkCanvas"></canvas>
+    <div class="bottom-glow"></div>
+  </div>
+  
+
+  <main class="container">
+    <header class="panel translucent">
+      <h1>Elden Ring Stats Calculator</h1>
+    </header>
+
+    <section class="panel translucent" id="character-section">
+      <h2>Character Stats</h2>
+      <div class="tabs">
+        <button class="tab active" data-tab="stats">Stats</button>
+        <button class="tab" data-tab="equipment">Equipment</button>
+        <button class="tab" data-tab="spells">Spells</button>
+        <button class="tab" data-tab="talismans">Talismans</button>
+      </div>
+      
+      <div class="tab-content" id="tab-stats">
+        <div class="stat-section">
+          <!-- Left Panel -->
+          <div class="left-panel">
+            <div class="char-info">
+              <div class="labeled-control">
+                <span class="label">Level</span>
+                <div class="stat-control" data-stat="level">
+                  <input type="text" name="level" value="0" readonly />
+                </div>
+              </div>
+              <div class="labeled-control">
+                <span class="label">Base Build</span>
+                <select name="baseBuild" id="baseBuild" class="dropdown">
+                  <option value="">-- Choose Class --</option>
+                  <option value="vagabond">Vagabond</option>
+                  <option value="warrior">Warrior</option>
+                  <option value="hero">Hero</option>
+                  <option value="bandit">Bandit</option>
+                  <option value="astrologer">Astrologer</option>
+                  <option value="prophet">Prophet</option>
+                  <option value="samurai">Samurai</option>
+                  <option value="prisoner">Prisoner</option>
+                  <option value="confessor">Confessor</option>
+                  <option value="wretch">Wretch</option>
+                </select>
+              </div>              
+            </div>
+          
+            <div class="attributes">
+              <h3>Attribute Points</h3>
+          
+              <div class="labeled-control">
+                <span class="label">Vigor</span>
+                <div class="stat-control" data-stat="vigor">
+                  <span class="decrement">−</span>
+                  <input type="text" name="vigor" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Mind</span>
+                <div class="stat-control" data-stat="mind">
+                  <span class="decrement">−</span>
+                  <input type="text" name="mind" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Endurance</span>
+                <div class="stat-control" data-stat="endurance">
+                  <span class="decrement">−</span>
+                  <input type="text" name="endurance" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Strength</span>
+                <div class="stat-control" data-stat="strength">
+                  <span class="decrement">−</span>
+                  <input type="text" name="strength" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Dexterity</span>
+                <div class="stat-control" data-stat="dexterity">
+                  <span class="decrement">−</span>
+                  <input type="text" name="dexterity" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Intelligence</span>
+                <div class="stat-control" data-stat="intelligence">
+                  <span class="decrement">−</span>
+                  <input type="text" name="intelligence" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Faith</span>
+                <div class="stat-control" data-stat="faith">
+                  <span class="decrement">−</span>
+                  <input type="text" name="faith" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+          
+              <div class="labeled-control">
+                <span class="label">Arcane</span>
+                <div class="stat-control" data-stat="arcane">
+                  <span class="decrement">−</span>
+                  <input type="text" name="arcane" value="0" readonly />
+                  <span class="increment">+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      
+          <!-- Middle Panel -->
+          <div class="right-panel">
+            <h3>Base Stats</h3>
+            <label>HP <span>455 / 455</span></label>
+            <label>FP <span>64 / 84</span></label>
+            <label>Stamina <span>95</span></label>
+            <label>Equip Load <span>32.7 / 51.4</span></label>
+            <label>Poise <span>25</span></label>
+            <label>Discovery <span>109.0</span></label>
+            <label>Memory Slots <span>2</span></label>
+          </div>
+      
+          <!-- Right Panel (Armaments) -->
+          <div class="armament-panel">
+            <h3>Attack Power</h3>
+            <label>R Armament 1 <span>160</span></label>
+            <label>R Armament 2 <span>29</span></label>
+            <label>R Armament 3 <span>160</span></label>
+            <label>L Armament 1 <span>83</span></label>
+            <label>L Armament 2 <span>24</span></label>
+            <label>L Armament 3 <span>24</span></label>
+          
+            <h3 style="margin-top: 1.5rem;">Damage Negation</h3>
+            <label>Physical <span>25.3</span></label>
+            <label>VS Strike <span>20.8</span></label>
+            <label>VS Slash <span>21.6</span></label>
+            <label>VS Pierce <span>22.2</span></label>
+            <label>Magic <span>18.9</span></label>
+            <label>Fire <span>19.5</span></label>
+            <label>Lightning <span>17.4</span></label>
+            <label>Holy <span>20.2</span></label>
+          
+            <h3 style="margin-top: 1.5rem;">Resistances</h3>
+            <label>Immunity <span>140</span></label>
+            <label>Robustness <span>110</span></label>
+            <label>Focus <span>125</span></label>
+            <label>Vitality <span>130</span></label>
+        </div>
+      </section>
+    </div>
+
+    <div class="tab-content hidden" id="tab-equipment">
+      <div id="equipment-section" class="equipment-grid">
+        <!-- Right-Hand Armaments -->
+        <div class="equipment-slot" id="r-armament-1">R Armament 1</div>
+        <div class="equipment-slot" id="r-armament-2">R Armament 2</div>
+        <div class="equipment-slot" id="r-armament-3">R Armament 3</div>
+
+        <!--Arrow Slots-->
+        <div class="equipment-slot" id="arrow-1">Arrow 1</div>
+        <div class="equipment-slot" id="arrow-2">Arrow 2</div>
+      
+        <!-- Left-Hand Armaments -->
+        <div class="equipment-slot" id="l-armament-1">L Armament 1</div>
+        <div class="equipment-slot" id="l-armament-2">L Armament 2</div>
+        <div class="equipment-slot" id="l-armament-3">L Armament 3</div>
+
+        <!--Bolt Slots-->
+        <div class="equipment-slot" id="bolt-1">Bolt 1</div>
+        <div class="equipment-slot" id="bolt-2">Bolt 2</div>
+      
+        <!-- Armor Slots -->
+        <div class="equipment-slot" id="head-armor">Head</div>
+        <div class="equipment-slot" id="chest-armor">Chest</div>
+        <div class="equipment-slot" id="gauntlets">Gauntlets</div>
+        <div class="equipment-slot" id="leg-armor">Legs</div>
+        <div class="empty-slot" ></div>
+      
+        <!-- Talisman Slots -->
+        <div class="equipment-slot" id="talisman-1">Talisman 1</div>
+        <div class="equipment-slot" id="talisman-2">Talisman 2</div>
+        <div class="equipment-slot" id="talisman-3">Talisman 3</div>
+        <div class="equipment-slot" id="talisman-4">Talisman 4</div>
+        <div class="empty-slot" ></div>
+
+        <!-- Quick-Access Items -->
+        <div class="equipment-slot" id="quick-item-1">Quick Item 1</div>
+        <div class="equipment-slot" id="quick-item-2">Quick Item 2</div>
+        <div class="equipment-slot" id="quick-item-3">Quick Item 3</div>
+        <div class="equipment-slot" id="quick-item-4">Quick Item 4</div>
+        <div class="equipment-slot" id="quick-item-5">Quick Item 5</div>
+      </div>     
+    </div>
+    
+    <div class="tab-content hidden" id="tab-spells">
+      <div id="spells-section" class="spells-grid">
+        <div class="spell-slot" id="spell-1">Spell 1</div>
+        <div class="spell-slot" id="spell-2">Spell 2</div>
+        <div class="spell-slot" id="spell-3">Spell 3</div>
+        <div class="spell-slot" id="spell-4">Spell 4</div>
+        <div class="spell-slot" id="spell-5">Spell 5</div>
+        <div class="spell-slot" id="spell-6">Spell 6</div>
+        <div class="spell-slot" id="spell-7">Spell 7</div>
+        <div class="spell-slot" id="spell-8">Spell 8</div>
+        <div class="spell-slot" id="spell-9">Spell 9</div>
+        <div class="spell-slot" id="spell-10">Spell 10</div>
+        <div class="spell-slot" id="spell-11">Spell 11</div>
+        <div class="spell-slot" id="spell-12">Spell 12</div>
+      </div>
+      
+    </div>
+    
+    <div class="tab-content hidden" id="tab-talismans">
+      <p>Talismans UI coming soon...</p>
+    </div>
+
+  </main>
+
+  <script src="sparks.js"></script>
+  <script src="equip.js"></script>
+  <script src="spells.js"></script>
+  <script src="stat_calculations.js"></script>
+
+  <!-- Add this just before </body> -->
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+
+        // Toggle active tab
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Show correct content
+        contents.forEach(content => {
+          content.classList.add('hidden');
+          if (content.id === `tab-${target}`) {
+            content.classList.remove('hidden');
+          }
+        });
+      });
+    });
+  </script>
+ </body>
+</html>
