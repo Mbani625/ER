@@ -17,13 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!classSelect) return;
 
+  // When the dropdown changes
   classSelect.addEventListener('change', (e) => {
     const selected = e.target.value.toLowerCase();
     const cls = classData[selected];
 
     if (!cls) return;
 
-    // Update level
+    // Update level input
     document.querySelector('[data-stat="level"] input').value = cls.stats.level;
 
     // Update attributes
@@ -32,5 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const input = document.querySelector(`[data-stat="${stat.toLowerCase()}"] input`);
       if (input) input.value = value;
     });
+
+    // Store base stats and base level for level recalculation
+    applyBaseStats(cls.stats);
   });
 });
+
