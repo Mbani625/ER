@@ -1,1 +1,175 @@
-[]
+[
+    {
+      "id": "class-1",
+      "name": "Vagabond",
+      "description": "A knight exiled from their homeland to wander. A solid, armor-clad origin. Good all-around stats.",
+      "image": "https://eldenring.fanapis.com/images/classes/vagabond.png",
+      "stats": {
+        "level": 9,
+        "vigor": 15,
+        "mind": 10,
+        "endurance": 11,
+        "strength": 14,
+        "dexterity": 13,
+        "intelligence": 9,
+        "faith": 9,
+        "arcane": 7
+      }
+    },
+    {
+      "id": "class-2",
+      "name": "Warrior",
+      "description": "A twinblade-wielding warrior from a nomadic tribe. An origin of exceptional dexterity.",
+      "image": "https://eldenring.fanapis.com/images/classes/warrior.png",
+      "stats": {
+        "level": 8,
+        "vigor": 11,
+        "mind": 12,
+        "endurance": 11,
+        "strength": 10,
+        "dexterity": 16,
+        "intelligence": 10,
+        "faith": 8,
+        "arcane": 9
+      }
+    },
+    {
+      "id": "class-3",
+      "name": "Hero",
+      "description": "A stalwart hero, at home with a battleaxe, descended from a badlands chieftain.",
+      "image": "https://eldenring.fanapis.com/images/classes/hero.png",
+      "stats": {
+        "level": 7,
+        "vigor": 14,
+        "mind": 9,
+        "endurance": 12,
+        "strength": 16,
+        "dexterity": 9,
+        "intelligence": 7,
+        "faith": 8,
+        "arcane": 11
+      }
+    },
+    {
+      "id": "class-4",
+      "name": "Bandit",
+      "description": "A dangerous bandit who strikes for weak points. Excels at ranged combat with bows.",
+      "image": "https://eldenring.fanapis.com/images/classes/bandit.png",
+      "stats": {
+        "level": 5,
+        "vigor": 10,
+        "mind": 11,
+        "endurance": 10,
+        "strength": 9,
+        "dexterity": 13,
+        "intelligence": 9,
+        "faith": 8,
+        "arcane": 14
+      }
+    },
+    {
+      "id": "class-5",
+      "name": "Astrologer",
+      "description": "A scholar who reads fate in the stars. Heir to the school of glintstone sorcery.",
+      "image": "https://eldenring.fanapis.com/images/classes/astrologer.png",
+      "stats": {
+        "level": 6,
+        "vigor": 9,
+        "mind": 15,
+        "endurance": 9,
+        "strength": 8,
+        "dexterity": 12,
+        "intelligence": 16,
+        "faith": 7,
+        "arcane": 9
+      }
+    },
+    {
+      "id": "class-6",
+      "name": "Prophet",
+      "description": "A seer ostracized for inauspicious prophecies. Well-versed in healing incantations.",
+      "image": "https://eldenring.fanapis.com/images/classes/prophet.png",
+      "stats": {
+        "level": 7,
+        "vigor": 10,
+        "mind": 14,
+        "endurance": 8,
+        "strength": 11,
+        "dexterity": 10,
+        "intelligence": 7,
+        "faith": 16,
+        "arcane": 10
+      }
+    },
+    {
+      "id": "class-7",
+      "name": "Samurai",
+      "description": "A capable fighter from the distant Land of Reeds. Handy with katana and longbows.",
+      "image": "https://eldenring.fanapis.com/images/classes/samurai.png",
+      "stats": {
+        "level": 9,
+        "vigor": 12,
+        "mind": 11,
+        "endurance": 13,
+        "strength": 12,
+        "dexterity": 15,
+        "intelligence": 9,
+        "faith": 8,
+        "arcane": 8
+      }
+    },
+    {
+      "id": "class-8",
+      "name": "Prisoner",
+      "description": "A prisoner bound in an iron mask. Studied in glintstone sorcery, having lived among the elite prior to sentencing.",
+      "image": "https://eldenring.fanapis.com/images/classes/prisoner.png",
+      "stats": {
+        "level": 9,
+        "vigor": 11,
+        "mind": 12,
+        "endurance": 11,
+        "strength": 11,
+        "dexterity": 14,
+        "intelligence": 14,
+        "faith": 6,
+        "arcane": 9
+      }
+    },
+    {
+      "id": "class-9",
+      "name": "Confessor",
+      "description": "A church spy adept at covert operations. Equally adept with a sword as they are with incantations.",
+      "image": "https://eldenring.fanapis.com/images/classes/confessor.png",
+      "stats": {
+        "level": 10,
+        "vigor": 10,
+        "mind": 13,
+        "endurance": 10,
+        "strength": 12,
+        "dexterity": 12,
+        "intelligence": 9,
+        "faith": 14,
+        "arcane": 9
+      }
+    },
+    {
+        "id": "class-10",
+        "name": "Wretch",
+        "description": "As poor, purposeless and naked as the day they were born. A nice club is all they have.",
+        "image": "https://eldenring.fanapis.com/images/classes/wretch.png",
+        "stats": {
+          "level": 1,
+          "vigor": 10,
+          "mind": 10,
+          "endurance": 10,
+          "strength": 10,
+          "dexterity": 10,
+          "intelligence": 10,
+          "faith": 10,
+          "arcane": 10
+        }
+      }
+    ]
+    
+   
+  
