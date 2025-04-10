@@ -1,89 +1,63 @@
-'''
 import requests
-from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor
 import json
-import time
 import os
+import time
 
-BASE_URL = "https://eldenring.wiki.fextralife.com"
-WEAPON_LIST_URL = f"{BASE_URL}/Weapons"
+BASE_URL = "https://eldenring.fanapis.com/api"
+CATEGORIES = {
+    "weapons": "weapons",
+    "armor": "armors",
+    "sorceries": "sorceries",
+    "talismans": "talismans",
+    "ammos": "ammos",
+    "shields": "shields",
+    "classes": "classes",
+    "ashes": "ashes"
+}
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0"
 }
 
-# Ensure output folder exists
+# Create data folder
 os.makedirs("data", exist_ok=True)
 
-def get_weapon_links():
-    print("Fetching weapon list...")
-    response = requests.get(WEAPON_LIST_URL, headers=HEADERS)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    links = []
+def fetch_category_data(endpoint, filename):
+    print(f"\nFetching {filename}...")
+    all_items = []
+    page = 0
+    more_data = True
 
-    for a in soup.select('div[class*="wiki_page"] a'):
-        href = a.get("href", "")
-        if "/weapon" in href.lower() or "/Weapons/" in href:
-            full_url = BASE_URL + href if href.startswith("/") else href
-            links.append(full_url)
-
-    # Remove duplicates and filter invalid ones
-    links = list(set(links))
-    print(f"Found {len(links)} weapon pages.")
-    return links
-
-def parse_weapon_page(url):
-    try:
+    while more_data:
+        page += 1
+        url = f"{BASE_URL}/{endpoint}?page={page}"
         res = requests.get(url, headers=HEADERS)
-        soup = BeautifulSoup(res.text, 'html.parser')
 
-        title = soup.select_one("h1.page-title").text.strip()
-        tables = soup.select("table")
+        if res.status_code != 200:
+            print(f"Failed to fetch page {page} of {filename}: {res.status_code}")
+            break
 
-        weapon_data = {
-            "name": title,
-            "url": url,
-        }
+        data = res.json().get("data", [])
+        if not data:
+            more_data = False
+            break
 
-        # Try to find relevant stats table
-        for table in tables:
-            rows = table.select("tr")
-            for row in rows:
-                if ":" not in row.text:
-                    continue
-                cols = row.select("td, th")
-                if len(cols) == 2:
-                    key = cols[0].text.strip()
-                    val = cols[1].text.strip()
-                    weapon_data[key] = val
+        all_items.extend(data)
+        print(f"  Page {page}: {len(data)} items")
+        time.sleep(0.2)
 
-        return weapon_data
-    except Exception as e:
-        print(f"Error parsing {url}: {e}")
-        return None
+    print(f"  Total {filename}: {len(all_items)} items")
 
-def scrape_all_weapons():
-    weapon_links = get_weapon_links()
-    all_weapons = []
+    with open(f"data/{filename}.json", "w", encoding="utf-8") as f:
+        json.dump(all_items, f, indent=2, ensure_ascii=False)
 
-    print("Scraping weapon pages in parallel...")
+    print(f"  Saved to data/{filename}.json")
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = executor.map(parse_weapon_page, weapon_links)
-
-        for weapon in futures:
-            if weapon:
-                all_weapons.append(weapon)
-
-    print(f"Scraped {len(all_weapons)} weapons.")
-    with open("data/weapons.json", "w", encoding="utf-8") as f:
-        json.dump(all_weapons, f, indent=2, ensure_ascii=False)
-
-    print("Saved to data/weapons.json")
+def fetch_all():
+    start = time.time()
+    for label, endpoint in CATEGORIES.items():
+        fetch_category_data(endpoint, label)
+    print(f"\n✅ Completed in {time.time() - start:.2f} seconds.")
 
 if __name__ == "__main__":
-    start = time.time()
-    scrape_all_weapons()
-    print(f"Completed in {time.time() - start:.2f} seconds.")
-'''
+    fetch_all()
